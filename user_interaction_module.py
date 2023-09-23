@@ -1,11 +1,54 @@
-def user_input():
-    while True:
-        cmd = input("Enter your command: ")
-        if cmd == 'exit':
-            break
-        else:
-            # lógica para tratar diferentes tipos de comandos.
-            pass
+from application_manager import ApplicationManager
+from TCP import TCPClient
+from UDP import UDPClient
 
-def display_message(message):
-    print(f"Server says: {message}")
+
+def display_menu():
+    print("1. Iniciar Cliente TCP")
+    print("2. Iniciar Cliente UDP")
+    print("3. Iniciar Servidor TCP")
+    print("4. Iniciar Servidor UDP")
+    print("5. Sair")
+
+
+def user_input():
+    app_manager = ApplicationManager()
+
+    while True:
+        display_menu()
+        choice = input("Escolha uma opção: ")
+
+        if choice == '1':
+            host = input("Insira o endereço IP do servidor: ")
+            port = int(input("Insira a porta do servidor: "))
+            client = TCPClient(host, port)
+            client.run()
+
+        elif choice == '2':
+            host = input("Insira o endereço IP do servidor: ")
+            port = int(input("Insira a porta do servidor: "))
+            client = UDPClient(host, port)
+            client.run()
+
+        elif choice == '3':
+            host = input(
+                "Insira o endereço IP do servidor (deixe em branco para localhost): ")
+            port = int(input("Insira a porta do servidor: "))
+            app_manager.handle_tcp(host, port)
+
+        elif choice == '4':
+            host = input(
+                "Insira o endereço IP do servidor (deixe em branco para localhost): ")
+            port = int(input("Insira a porta do servidor: "))
+            app_manager.handle_udp(host, port)
+
+        elif choice == '5':
+            print("Saindo...")
+            break
+
+        else:
+            print("Opção inválida. Tente novamente.")
+
+
+if __name__ == "__main__":
+    user_input()
