@@ -1,6 +1,6 @@
 from application_manager import ApplicationManager
-from TCP import TCPClient
-from UDP import UDPClient
+from TCP.client_tcp import TCPClient
+from UDP.client_udp import UDPClient
 
 
 def display_menu():

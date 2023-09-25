@@ -1,5 +1,5 @@
-from TCP import TCPServer
-from UDP import UDPServer
+from TCP.server_tcp import TCPServer
+from UDP.server_udp import UDPServer
 
 
 class ApplicationManager:
